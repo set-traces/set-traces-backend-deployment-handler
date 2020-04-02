@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+import os
 app = FastAPI()
 
 
@@ -11,8 +11,9 @@ def read_root(secretKey):
         return 404
     if secretKey == envKey:
         try:
-            exec("deployment.sh")
-        except:
+            os.system("./deployment.sh")
+        except Exception as e:
+            print(e)
             return {"failed":"file failed"}
         return {"Application": "Deployd"}
 
