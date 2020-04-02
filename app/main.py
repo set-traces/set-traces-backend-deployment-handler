@@ -7,7 +7,8 @@ app = FastAPI()
 def read_root(secretKey):
     try:
         envKey = open("envKey.secret", "r").read().strip()
-    except:
+    except Exception as e:
+        print(e)
         return 404
     if secretKey == envKey:
         try:
